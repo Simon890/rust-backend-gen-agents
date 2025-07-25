@@ -24,7 +24,7 @@ impl BasicTraits for BasicAgent {
             objective, 
             position, 
             state: AgentState::Discovery, 
-            memory: vec!()
+            memory: vec![]
         }
     }
 
