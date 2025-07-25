@@ -26,3 +26,5 @@ You can test the system by running:
 cargo run
 ```
 The console will ask you to describe your project. The more information you give, te better.
+
+![gif](./agents.gif)
