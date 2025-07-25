@@ -1,0 +1,70 @@
+[
+  {
+    "route": "/characters",
+    "is_route_dynamic": "false",
+    "method": "get",
+    "request_body": "None",
+    "response": [
+      {
+        "name": "string",
+        "house": "string",
+        "actor": "string",
+        "image": "string"
+      }
+    ]
+  },
+  {
+    "route": "/characters/students",
+    "is_route_dynamic": "false",
+    "method": "get",
+    "request_body": "None",
+    "response": [
+      {
+        "name": "string",
+        "house": "string",
+        "actor": "string",
+        "image": "string"
+      }
+    ]
+  },
+  {
+    "route": "/characters/staff",
+    "is_route_dynamic": "false",
+    "method": "get",
+    "request_body": "None",
+    "response": [
+      {
+        "name": "string",
+        "house": "string",
+        "actor": "string",
+        "image": "string"
+      }
+    ]
+  },
+  {
+    "route": "/characters/house/{house}",
+    "is_route_dynamic": "true",
+    "method": "get",
+    "request_body": "None",
+    "response": [
+      {
+        "name": "string",
+        "house": "string",
+        "actor": "string",
+        "image": "string"
+      }
+    ]
+  },
+  {
+    "route": "/character/{name}",
+    "is_route_dynamic": "true",
+    "method": "get",
+    "request_body": "None",
+    "response": {
+      "name": "string",
+      "house": "string",
+      "actor": "string",
+      "image": "string"
+    }
+  }
+]
