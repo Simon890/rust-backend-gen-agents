@@ -1,6 +1,5 @@
+use crate::models::agent_basic::basic_traits::BasicTraits;
 use crate::models::general::llm::Message;
-
-use super::basic_traits::BasicTraits;
 
 #[derive(Debug, PartialEq)]
 pub enum AgentState {
@@ -20,10 +19,10 @@ pub struct BasicAgent {
 
 impl BasicTraits for BasicAgent {
     fn new(objective: String, position: String) -> Self {
-        BasicAgent { 
-            objective, 
-            position, 
-            state: AgentState::Discovery, 
+        Self {
+            objective,
+            position,
+            state: AgentState::Discovery,
             memory: vec![]
         }
     }
@@ -31,16 +30,15 @@ impl BasicTraits for BasicAgent {
     fn update_state(&mut self, new_state: AgentState) {
         self.state = new_state;
     }
-
+    
     fn get_memory(&self) -> &Vec<Message> {
         &self.memory
     }
-
-    fn get_objective(&self) -> &str {
+    fn get_objective(&self) -> &String {
         &self.objective
     }
 
-    fn get_position(&self) -> &str {
+    fn get_position(&self) -> &String {
         &self.position
     }
 

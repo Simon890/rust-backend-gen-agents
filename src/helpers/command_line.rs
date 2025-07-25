@@ -1,5 +1,4 @@
 use std::io::{stdin, stdout};
-
 use crossterm::{
     style::{Color, ResetColor, SetForegroundColor},
     ExecutableCommand
@@ -23,8 +22,8 @@ impl PrintCommand {
         };
 
         stdout.execute(SetForegroundColor(Color::Green)).unwrap();
-        print!("[Agent] {}: ", agent_pos);
-        
+        print!("[Agent]: {}: ", agent_pos);
+
         stdout.execute(SetForegroundColor(statement_color)).unwrap();
         println!("{}", agent_statement);
 
@@ -42,12 +41,48 @@ pub fn get_user_response(question: &str) -> String {
 
     stdout.execute(ResetColor).unwrap();
 
-    let mut user_response = String::new();
+    let mut user_response: String = String::new();
     stdin()
         .read_line(&mut user_response)
         .expect("Failed to read response");
 
-    user_response.trim().to_string()
+    return user_response.trim().to_string();
+}
+
+/// Get user response that code is safe to execute
+pub fn confirm_safe_code() -> bool {
+    let mut stdout: std::io::Stdout = stdout();
+    loop {
+        
+        stdout.execute(SetForegroundColor(Color::Blue)).unwrap();
+        println!("");
+        print!("WARNING: You are about to run code written entirely by AI. ");
+        println!("Review your code and confirm you wish to continue.");
+
+        stdout.execute(ResetColor).unwrap();
+
+        stdout.execute(SetForegroundColor(Color::Green)).unwrap();
+        println!("[1] All good");
+        stdout.execute(SetForegroundColor(Color::DarkRed)).unwrap();
+        println!("[2] Lets stop this project");
+
+        stdout.execute(ResetColor).unwrap();
+
+        let mut human_response: String = String::new();
+        stdin()
+            .read_line(&mut human_response)
+            .expect("Failed to read response");
+
+        let human_response: String = human_response.trim().to_lowercase();
+
+        match human_response.as_str() {
+            "1" | "ok" | "y" => return true,
+            "2" | "no" | "n" => return false,
+            _ => {
+                println!("Invalid input. Please select '1' or '2'")
+            }
+        }
+    }
 }
 
 #[cfg(test)]
